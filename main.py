@@ -62,6 +62,20 @@ def agendar():
     else:
         return jsonify({"status": "erro", "mensagem": resposta.text}), 500
 
+@app.route('/')
+def home():
+    return "Deco online!"
+
+@app.route('/gmail/last', methods=['GET'])
+def get_last_email():
+    return jsonify({
+        "from": "cojepemec.secretaria@tjsc.jus.br",
+        "subject": "Pauta Concentrada - Atualização de Disponibilidades",
+        "received": "11.04.2025 09h44",
+        "summary": "Mediadores enviaram novas disponibilidades, já atualizadas na planilha."
+    })
+
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
